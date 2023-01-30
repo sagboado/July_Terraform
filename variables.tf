@@ -1,3 +1,4 @@
+# Configure VPC
 variable "region_name" {
     description = "name of region"
     default = "eu-west-2"
@@ -11,7 +12,7 @@ variable "cidr_for_vpc" {
     type = string
   
 }
-
+# Configure Subnet
 variable "cidr_for_public_sub_1" {
     description = "public cidr"
     default = "10.0.1.0/24"
@@ -39,7 +40,7 @@ variable "cidr_for_private_sub_2" {
     type = string
   
 }
-
+# Configure Availability Zones
 variable "AZ_1" {
     description = "availability zone"
     default = "eu-west-2a"
@@ -60,3 +61,4 @@ variable "AZ_3" {
     type = string
   
 }
+

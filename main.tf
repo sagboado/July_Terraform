@@ -107,3 +107,23 @@ resource "aws_route" "public_internet_gateway_route" {
   gateway_id                = aws_internet_gateway.lscft_internet_gateway.id
   destination_cidr_block    = "0.0.0.0/0"
 }
+
+# Configure NAT Gateway
+resource "aws_nat_gateway" "LSCFT_NatGateway" {
+  allocation_id = aws_eip.LSCFT_Elastic_IP.id
+  subnet_id     = aws_subnet.public_sub_1.id
+
+  tags = {
+    Name = "LSCFT_NatGateway"
+  }
+
+  # To ensure proper ordering, it is recommended to add an explicit dependency
+  # on the Internet Gateway for the VPC.
+  depends_on = [aws_internet_gateway.lscft_internet_gateway]
+}
+
+# Configure Elastic IP
+resource "aws_eip" "LSCFT_Elastic_IP" {
+# instance = aws_instance.web.id
+  vpc      = true
+}
