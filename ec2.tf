@@ -1,27 +1,14 @@
 # Configure EC2
 
+resource "aws_instance" "Server_LSCFT" {
+  ami = "ami-08cd358d745620807"
+  instance_type = var.Instance_type
+  key_name = var.Key_Pair
+  vpc_security_group_ids = [aws_security_group.LSCFT_Security_Group.id]
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.public_sub_1.id
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
-
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
-
-  tags = {
-    Name = "HelloWorld"
+  tags ={
+    name = "Server_LSCFT"
   }
 }

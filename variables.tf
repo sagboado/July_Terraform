@@ -62,3 +62,19 @@ variable "AZ_3" {
   
 }
 
+#Configure Instance type
+
+variable "Instance_type" {
+    description = "Type of Instance that would be deployed"
+    default = "t2.micro"
+    type = string
+  
+}
+
+# Configure Key_Pair
+variable "Key_Pair" {
+    description = "key pair that would be used to gain access to the server"
+    default = "EC2 Tutorial"
+    type = string
+  
+}
